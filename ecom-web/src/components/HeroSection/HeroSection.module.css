@@ -1,0 +1,61 @@
+.hero {
+    width: 100%;
+    height: 60vh;
+    padding: 2em 8em;
+}
+
+.heroContainer {
+    background-color: var(--heroColor);
+    height: 100%;
+    border-radius: 1em;
+    display: flex;
+}
+
+.leftContainer {
+    width: 50%;
+    padding: 3em 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.leftContainer p {
+    color: var(--color1);
+    font-weight: 600;
+}
+
+.leftContainer h1 {
+    font-size: 2.5em;
+    line-height: 1.1;
+    color: var(--color3);
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 0.5em;
+}
+
+.buttonContainer button {
+    padding: 0.8em 2em;
+    border-radius: 1em;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+}
+
+.button1 {
+    background-color: var(--color1);
+    color: var(--color2);
+}
+
+.rightContainer {
+    padding: 2em;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightContainer img {
+    height: 100%;
+}
