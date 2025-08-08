@@ -17,12 +17,12 @@ function App() {
 
   return (
     <>
-      {showLogin && <Login />}
-      <div className={showLogin ? "blurred" : ""}>
+      {showLogin && <Login setShowLogin={setShowLogin} />}
+      <div>
         <Router>
           <Routes>
             <Route path='/' element={<>
-              <Header showLogin={showLogin} setShowLogin={setShowLogin} />
+              <Header setShowLogin={setShowLogin} />
               <HeroSection />
               <Products />
               <FeaturedProducts />

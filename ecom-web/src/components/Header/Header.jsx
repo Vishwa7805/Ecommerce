@@ -3,12 +3,12 @@ import img from '../../assets/logo.svg';
 import { CgProfile } from "react-icons/cg";
 import { Link } from 'react-router-dom';
 
-const Header = ({ showLogin, setShowLogin }) => {
+const Header = ({setShowLogin}) => {
 
   return (
     <header className={header.navbar}>
       <div className={header.logoContainer}>
-        <img src={img} alt="Logo" className={header.logo} />
+        <img src={img} alt="Logo"/>
       </div>
       <nav className={header.navLinks}>
         <Link to="/" className={header.navElements}>Home</Link>

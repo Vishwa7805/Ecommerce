@@ -1,8 +1,9 @@
 import login from './Login.module.css';
 import { FaGoogle } from "react-icons/fa";
 
-const Login = () => {
+const Login = ({setShowLogin}) => {
     return (
+        <main className={login.loginOverlay} onClick={() => setShowLogin(false)}>
             <section className={login.loginContainer}>
                 <div className={login.loginHeader}>
                     <h3>Sign in to QuickCart</h3>
@@ -19,6 +20,7 @@ const Login = () => {
                 </div>
                 <p>Don't have an account? Sign up</p>
             </section>
+        </main>
     )
 }
 
