@@ -1,0 +1,11 @@
+.pricing {
+    display: flex;
+    gap: 2em;
+}
+
+.pricing div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 50%;
+}
