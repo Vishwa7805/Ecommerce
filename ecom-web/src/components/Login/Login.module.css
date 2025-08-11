@@ -25,6 +25,10 @@
     border: 1px var(--border-color2) solid;
 }
 
+.loginContainer p {
+    color: var(--color6);
+}
+
 .loginHeader {
     display: flex;
     flex-direction: column;
