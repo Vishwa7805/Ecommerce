@@ -1,0 +1,23 @@
+* {
+    font-family: "Outfit", "Poppins", sans-serif;
+    font-style: normal;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --heroColor: #e6e9f2;
+    --color1: #ea580c;
+    --color2: #ffffff;
+    --color3: #374151;
+    --color4: #e5e7eb;
+    --color5: #ea580c1a;
+    --color6: #6b7280;
+    --border-color1: #d1d5db;
+    --border-color2: #e5e7eb;
+    --background-color1: #2f3037;
+    --background-color2: #000000b5;
+}

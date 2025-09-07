@@ -1,0 +1,39 @@
+.featuredContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    height: 90vh;
+}
+
+.featuredContainer h1 {
+    font-size: 2rem;
+}
+
+.fProducts {
+    display: flex;
+    gap: 3em;
+    padding: 2em 5em;
+    height: 100%;
+}
+
+.fprd {
+    border: 1px black solid;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    justify-content: end;
+    height: 100%;
+    cursor: pointer;
+}
+
+.buynow {
+    background-color: var(--color1);
+    border: none;
+    border-radius: 0.25em;
+    width: 40%;
+    height: 10%;
+    color: var(--color2);
+    font-size: 1rem;
+}

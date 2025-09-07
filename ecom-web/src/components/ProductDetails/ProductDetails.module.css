@@ -1,0 +1,54 @@
+.productDetailsContainer {
+    display: flex;
+    padding: 4em 6em;
+}
+
+.productImageContainer {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.productImage {
+    background-color: var(--color4);
+    border-radius: 1em;
+    width: 60%;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    width: 50%;
+}
+
+.productInfo h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--color3);
+}
+
+.productInfo p {
+    font-size: 1.1rem;
+    color: var(--color6);
+    line-height: 1.5em;
+}
+
+.actionButtons {
+    display: flex;
+    gap: 1em;
+    width: 100%;
+}
+
+.actionButtons button {
+    width: 50%;
+    padding: 1em 2em;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.actionButtons button:hover {
+    opacity: 1;
+}

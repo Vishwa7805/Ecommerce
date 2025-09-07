@@ -1,0 +1,108 @@
+.subscriptionContainer {
+    padding: 2em 7em;
+    height: 100vh;
+    border: 1px var(--border-color2) solid;
+}
+
+.subBanner {
+    background-color: var(--heroColor);
+    display: flex;
+    border-radius: 1em;
+}
+
+.subImage {
+    width: 40%;
+    height: 18em;
+    object-fit: cover;
+}
+
+.subText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8em;
+    padding: 2em;
+}
+
+.subText h1 {
+    font-size: 2em;
+    font-weight: 600;
+    color: var(--color3);
+    text-align: center;
+}
+
+.subText p {
+    color: var(--color6);
+    font-size: 1em;
+    text-align: center;
+}
+
+.subText button {
+    width: 10em;
+    height: 3em;
+    padding: 0.5em;
+    border: none;
+    font-size: 1rem;
+    border-radius: 0.5em;
+    background-color: var(--color1);
+    color: var(--color2);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.subForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5em;
+    gap: 0.5em;
+}
+
+.subForm h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color3);
+}
+
+.subForm p {
+    color: var(--color6);
+    font-size: 1.2rem;
+}
+
+.subInput {
+    width: 70%;
+    height: 3em;
+    margin-top: 2em;
+    border: 1px solid var(--border-color2);
+    border-radius: 0.5em;
+    font-size: 1rem;
+}
+
+.subInput input {
+    width: 70%;
+    height: 100%;
+    padding: 1em;
+    font-size: 1rem;
+    border-radius: 0.5em;
+    border: none;
+    outline: none;
+}
+
+.subInput input::placeholder {
+    color: var(--color6);
+    font-size: 1rem;
+}
+
+.subInput button {
+    width: 30%;
+    height: 100%;
+    border: none;
+    background-color: var(--color1);
+    color: var(--color2);
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 0 0.5em 0.5em 0;
+    cursor: pointer;
+}
