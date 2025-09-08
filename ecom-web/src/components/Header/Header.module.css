@@ -1,5 +1,5 @@
 .navbar {
-    padding: 1em 8em;
+    padding: 0.5em 8em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,4 +50,10 @@
 .profileIcon {
     font-size: 1.5em;
     color: var(--color3);
+}
+
+.profileImage {
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
 }

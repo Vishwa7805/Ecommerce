@@ -13,13 +13,14 @@ import Login from './components/Login/Login.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Subscription from './components/Subscription/Subscription.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
+import { UserProvider } from './components/Context/UserContext.jsx';
 
 function App() {
 
   const [showLogin, setShowLogin] = useState(false);
 
   return (
-    <>
+    <UserProvider>
       {showLogin && <Login setShowLogin={setShowLogin} />}
       <div>
         <Router>
@@ -34,7 +35,7 @@ function App() {
             </>} />
             <Route path="/seller" element={
               <>
-                <Header setShowLogin={setShowLogin}/>
+                <Header setShowLogin={setShowLogin} />
                 <SellerDashboard />
               </>
             } >
@@ -43,14 +44,14 @@ function App() {
             </Route>
             <Route path="/product-details/:id" element={
               <>
-                <Header setShowLogin={setShowLogin}/>
+                <Header setShowLogin={setShowLogin} />
                 <ProductDetails />
               </>
             } />
           </Routes>
         </Router>
       </div>
-    </>
+    </UserProvider>
   )
 }
 

@@ -1,14 +1,19 @@
 import header from './Header.module.css';
-import img from '../../assets/logo.svg';
+import logo from '../../assets/logo.svg';
 import { CgProfile } from "react-icons/cg";
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import UserContext from '../Context/UserContext.jsx';
+import defaultImg from '../../assets/apple_earphone_image.png';
 
-const Header = ({setShowLogin}) => {
+const Header = ({ setShowLogin }) => {
+
+  const { currentUser } = useContext(UserContext);
 
   return (
     <header className={header.navbar}>
       <div className={header.logoContainer}>
-        <img src={img} alt="Logo"/>
+        <img src={logo} alt="Logo" />
       </div>
       <nav className={header.navLinks}>
         <Link to="/" className={header.navElements}>Home</Link>
@@ -19,8 +24,15 @@ const Header = ({setShowLogin}) => {
       </nav>
       <div className={header.iconsContainer} onClick={() => setShowLogin(true)}>
         <div className={header.profileContainer}>
-          <CgProfile className={header.profileIcon}/>
-          <p>Account</p>
+          {
+            (currentUser && <img src={currentUser.pictureUrl || defaultImg} alt="Profile" className={header.profileImage} />)
+            || (
+              <>
+                <CgProfile className={header.profileIcon} />
+                <p>Account</p>
+              </>
+            )
+          }
         </div>
       </div>
     </header>
