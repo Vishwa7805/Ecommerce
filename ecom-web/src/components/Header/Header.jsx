@@ -9,6 +9,7 @@ import defaultImg from '../../assets/apple_earphone_image.png';
 const Header = ({ setShowLogin }) => {
 
   const { currentUser } = useContext(UserContext);
+  const isSeller = currentUser?.role?.includes('SELLER');
 
   return (
     <header className={header.navbar}>
@@ -20,7 +21,7 @@ const Header = ({ setShowLogin }) => {
         <Link to="/shop" className={header.navElements}>Shop</Link>
         <Link to="/about" className={header.navElements}>About Us</Link>
         <Link to="/contact" className={header.navElements}>Contact</Link>
-        <Link to="/seller"><button className={header.sellerButton}>Seller Dashboard</button></Link>
+        {isSeller && <Link to="/seller"><button className={header.sellerButton}>Seller Dashboard</button></Link>}
       </nav>
       <div className={header.iconsContainer} onClick={() => setShowLogin(true)}>
         <div className={header.profileContainer}>

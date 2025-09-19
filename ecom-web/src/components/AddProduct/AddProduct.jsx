@@ -36,10 +36,11 @@ const AddProduct = () => {
         );
         formData.append('image', image);
         try {
-            await axios.post("http://127.0.0.1:8080/add-products", formData, {
+            await axios.post("http://localhost:8080/add-products", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                },
+                withCredentials: true
             });
         }
         catch (error) {

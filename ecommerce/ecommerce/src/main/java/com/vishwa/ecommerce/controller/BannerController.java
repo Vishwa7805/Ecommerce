@@ -25,7 +25,7 @@ public class BannerController {
     public ResponseEntity<byte[]> getImageByBannerId(@PathVariable int id) {
         Banner banner = bannerService.getAllBanners().stream()
                 .filter(p -> p.getId() == id)
-                .findFirst()
+                .findFirst()    
                 .orElse(null);
 
         return ResponseEntity.ok()

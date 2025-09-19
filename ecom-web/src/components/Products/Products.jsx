@@ -9,7 +9,7 @@ const Products = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8080/products')
+        axios.get('http://localhost:8080/products')
             .then(response => {
                 setProductsData(response.data);
             })

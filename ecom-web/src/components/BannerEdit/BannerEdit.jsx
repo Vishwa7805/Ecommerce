@@ -36,10 +36,11 @@ const BannerEdit = () => {
         formData.append('image', image);
 
         try {
-            await axios.post("http://127.0.0.1:8080/seller", formData, {
+            await axios.post("http://localhost:8080/seller", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                },
+                 withCredentials: true
             });
         }
         catch (error) {

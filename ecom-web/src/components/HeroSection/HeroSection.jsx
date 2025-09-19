@@ -7,7 +7,7 @@ const HeroSection = () => {
     const [banner, setBanner] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8080/banners')
+        axios.get('http://localhost:8080/banners')
         .then(response => {
             setBanner(response.data);
         })

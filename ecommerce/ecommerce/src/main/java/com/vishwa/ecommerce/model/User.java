@@ -1,5 +1,6 @@
 package com.vishwa.ecommerce.model;
 
+import com.vishwa.ecommerce.Role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +16,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column(unique = true)
     private String googleId;
     private String name;
+
     @Column(unique = true)
     private String email;
     private String pictureUrl;

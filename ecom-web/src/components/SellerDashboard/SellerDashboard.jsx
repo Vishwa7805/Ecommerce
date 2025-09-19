@@ -1,5 +1,4 @@
 import seller from './SellerDashboard.module.css';
-import Header from '../Header/Header.jsx';
 import { CiSquarePlus } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
 import { CiViewList } from "react-icons/ci";

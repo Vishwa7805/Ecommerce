@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b4760244-6633-4d26-a72f-6067b2e65408" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/ecom-web/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/ecom-web/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/vishwa/ecommerce/config/CustomOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/vishwa/ecommerce/config/CustomOAuth2UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/vishwa/ecommerce/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/vishwa/ecommerce/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/vishwa/ecommerce/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/vishwa/ecommerce/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/vishwa/ecommerce/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/vishwa/ecommerce/service/UserService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="32XUN34zSP81hM0Q6FFWToNJeiz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Programs/eco"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4760244-6633-4d26-a72f-6067b2e65408" name="Changes" comment="" />
+      <created>1757566367093</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757566367093</updated>
+    </task>
+    <servers />
+  </component>
+</project>
