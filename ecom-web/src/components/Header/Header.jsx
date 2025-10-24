@@ -1,15 +1,44 @@
 import header from './Header.module.css';
 import logo from '../../assets/logo.svg';
 import { CgProfile } from "react-icons/cg";
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState, useRef, useEffect } from 'react';
 import UserContext from '../Context/UserContext.jsx';
 import defaultImg from '../../assets/apple_earphone_image.png';
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { IoMdSettings } from "react-icons/io";
+import { FaSignOutAlt } from "react-icons/fa";
+import { FaBasketShopping } from "react-icons/fa6";
+
 
 const Header = ({ setShowLogin }) => {
 
   const { currentUser } = useContext(UserContext);
   const isSeller = currentUser?.role?.includes('SELLER');
+  const [isDropdown, setIsDropdown] = useState(false);
+  const navigate = useNavigate();
+  const dropdownRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdown(false);
+      }
+    } 
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [])
+
+  const showDropdown = () => {
+    setIsDropdown(!isDropdown);
+  }
+
+  const handleNavigate = (path) => {
+    navigate(path);
+    setIsDropdown(false);
+  }
 
   return (
     <header className={header.navbar}>
@@ -23,16 +52,38 @@ const Header = ({ setShowLogin }) => {
         <Link to="/contact" className={header.navElements}>Contact</Link>
         {isSeller && <Link to="/seller"><button className={header.sellerButton}>Seller Dashboard</button></Link>}
       </nav>
-      <div className={header.iconsContainer} onClick={() => setShowLogin(true)}>
-        <div className={header.profileContainer}>
-          {
-            (currentUser && <img src={currentUser.pictureUrl || defaultImg} alt="Profile" className={header.profileImage} />)
-            || (
-              <>
-                <CgProfile className={header.profileIcon} />
-                <p>Account</p>
-              </>
-            )
+      <div className={header.iconsContainer} onClick={() => { if (!currentUser) setShowLogin(true) }}>
+        <div className={header.profileContainer} ref={dropdownRef}>
+          {currentUser ? (
+            <div style={{ position: 'relative' }}>
+              <img src={currentUser.pictureUrl || defaultImg} alt="Profile" className={header.profileImage} onClick={showDropdown} />
+              {isDropdown && (
+                <ul className={header.dropdownMenu}>
+                  <li>
+                    <IoMdSettings style={{ fontSize: '1em', color: 'var(--color3)' }} />
+                    <p>Manage account</p>
+                  </li>
+                  <li>
+                    <MdOutlineShoppingCart style={{ fontSize: '1em', color: 'var(--color3)' }} />
+                    <p>Cart</p>
+                  </li>
+                  <li>
+                    <FaBasketShopping style={{ fontSize: '1em', color: 'var(--color3)' }} />
+                    <p>My Orders</p>
+                  </li>
+                  <li>
+                    <FaSignOutAlt style={{ fontSize: '1em', color: 'var(--color3)' }} />
+                    <p>Sign out</p>
+                  </li>
+                </ul>
+              )}
+            </div>
+          ) : (
+            <>
+              <CgProfile className={header.profileIcon} />
+              <p>Account</p>
+            </>
+          )
           }
         </div>
       </div>

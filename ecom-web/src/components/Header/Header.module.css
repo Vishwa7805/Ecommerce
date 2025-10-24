@@ -53,7 +53,31 @@
 }
 
 .profileImage {
-    width: 2em;
-    height: 2em;
     border-radius: 100%;
+}
+
+.dropdownMenu {
+    position: absolute;
+    border: 1px var(--border-color1) solid;
+    background-color: var(--color2);
+    right: 0;
+    width: 20em;
+    border-radius: 1em;
+}
+
+.dropdownMenu li {
+    display: flex;
+    align-items: center;
+    padding: 1em 1.5em;
+    gap: 1em;
+    border-bottom: 1px var(--border-color2) solid;
+}
+
+.dropdownMenu li p {
+    font-size: 1rem;
+}
+
+.dropdownMenu li:hover {
+    background-color: var(--hover-color1);
+    border-radius: 1em;
 }
