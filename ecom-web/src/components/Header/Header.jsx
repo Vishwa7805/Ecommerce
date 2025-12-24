@@ -4,11 +4,12 @@ import { CgProfile } from "react-icons/cg";
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState, useRef, useEffect } from 'react';
 import UserContext from '../Context/UserContext.jsx';
-import defaultImg from '../../assets/apple_earphone_image.png';
+import defaultImg from '../../assets/icon-7797704_640.png';
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
 import { FaSignOutAlt } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
+import { FaShoppingCart } from "react-icons/fa";
 
 
 const Header = ({ setShowLogin }) => {
@@ -63,6 +64,7 @@ const Header = ({ setShowLogin }) => {
         <div className={header.profileContainer} ref={dropdownRef}>
           {currentUser ? (
             <div style={{ position: 'relative' }}>
+              <FaShoppingCart className={header.shoppingCartIcon}/>
               <img src={currentUser.pictureUrl || defaultImg} alt="Profile" className={header.profileImage} onClick={showDropdown} />
               {isDropdown && (
                 <ul className={header.dropdownMenu}>

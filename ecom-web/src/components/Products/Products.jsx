@@ -9,7 +9,7 @@ const Products = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/products')
+        axios.get('http://localhost:8080/products', {withCredentials: true})
             .then(response => {
                 setProductsData(response.data);
             })
