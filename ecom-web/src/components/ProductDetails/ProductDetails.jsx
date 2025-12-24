@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import productDetails from './ProductDetails.module.css';
+import UserContext from '../Context/UserContext';
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const { currentUser, isAuthenticated } = useContext(UserContext);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -23,6 +25,22 @@ const ProductDetails = () => {
         return <div>Loading...</div>;
     }
 
+    const handleAddToCart = async () => {
+        if (!isAuthenticated) {
+            alert("Please login to add items to your cart.");
+            return;
+        }
+
+        try {
+            const response = await axios.post(`http://localhost:8080/cart/add-product=${product.id}`,
+                {},
+                { withCredentials: true });
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+            alert("Could not add to cart. Please try again.");
+        }
+    }
+
     return (
         <>
             <section className={productDetails.productDetailsContainer}>
@@ -33,10 +51,10 @@ const ProductDetails = () => {
                     <h1>{product.name}</h1>
                     <p>{product.description}</p>
                     <p style={{ fontWeight: '500', fontSize: '1.8rem', color: 'var(--color3)' }}>{`$${product.price}`}</p>
-                    <span style={{width: '100%', height: '0.5px', backgroundColor: 'var(--color4)' }}></span>
+                    <span style={{ width: '100%', height: '0.5px', backgroundColor: 'var(--color4)' }}></span>
                     <div className={productDetails.actionButtons}>
-                        <button style={{backgroundColor: 'var(--color4)'}}>Add to Cart</button>
-                        <button style={{backgroundColor: 'var(--color1)', color: 'var(--color2)'}}>Buy Now</button>
+                        <button style={{ backgroundColor: 'var(--color4)' }} onClick={handleAddToCart}>Add to Cart</button>
+                        <button style={{ backgroundColor: 'var(--color1)', color: 'var(--color2)' }}>Buy Now</button>
                     </div>
                 </div>
             </section>

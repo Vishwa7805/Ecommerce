@@ -28,7 +28,7 @@ function App() {
               <Header setShowLogin={setShowLogin} />
               <HeroSection />
               <Products />
-              <FeaturedProducts />
+              {/* <FeaturedProducts /> */}
               <Subscription />
               <Footer />
             </>} />

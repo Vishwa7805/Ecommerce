@@ -1,4 +1,38 @@
 package com.vishwa.ecommerce.service;
 
+import com.vishwa.ecommerce.model.CartItem;
+import com.vishwa.ecommerce.model.Product;
+import com.vishwa.ecommerce.model.User;
+import com.vishwa.ecommerce.repository.CartRepository;
+import com.vishwa.ecommerce.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
 public class CartService {
+    @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+
+    public void addItemToCart(User user, int productId) {
+        Optional<CartItem> existingItem = cartRepository.findByUserAndProductId(user, productId);
+
+        if (existingItem.isPresent()) {
+            System.out.println("Product already in cart for user: " + user.getEmail());
+        } else {
+            Product product = productRepository.findById(productId)
+                    .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+
+            CartItem newItem = new CartItem();
+            newItem.setUser(user);
+            newItem.setProduct(product);
+
+            cartRepository.save(newItem);
+        }
+    }
 }

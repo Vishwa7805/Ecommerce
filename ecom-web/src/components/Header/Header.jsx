@@ -14,6 +14,7 @@ import { FaBasketShopping } from "react-icons/fa6";
 const Header = ({ setShowLogin }) => {
 
   const { currentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
   const isSeller = currentUser?.role?.includes('SELLER');
   const [isDropdown, setIsDropdown] = useState(false);
   const navigate = useNavigate();
@@ -38,6 +39,12 @@ const Header = ({ setShowLogin }) => {
   const handleNavigate = (path) => {
     navigate(path);
     setIsDropdown(false);
+  }
+
+  const handleSignOut =() => {
+    setCurrentUser(null);
+    setIsDropdown(false);
+    window.location.href = 'http://localhost:8080/logout';
   }
 
   return (
@@ -71,7 +78,7 @@ const Header = ({ setShowLogin }) => {
                     <FaBasketShopping style={{ fontSize: '1em', color: 'var(--color3)' }} />
                     <p>My Orders</p>
                   </li>
-                  <li>
+                  <li onClick={handleSignOut}>
                     <FaSignOutAlt style={{ fontSize: '1em', color: 'var(--color3)' }} />
                     <p>Sign out</p>
                   </li>

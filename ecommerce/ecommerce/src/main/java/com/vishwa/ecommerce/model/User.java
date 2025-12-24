@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -26,4 +28,7 @@ public class User {
     @Column(unique = true)
     private String email;
     private String pictureUrl;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<CartItem> cartItems;
 }

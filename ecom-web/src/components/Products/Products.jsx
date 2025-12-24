@@ -26,7 +26,7 @@ const Products = () => {
         <section className={products.productContainer}>
             <h2>Popular products</h2>
             <div className={products.productList}>
-                {productsData.map((prd, i) => (
+                {Array.isArray(productsData) && productsData.map((prd, i) => (
                     <div className={products.product} key={i} onClick={() => handleBuyNow(prd)}>
                         <div className={products.productImgContainer}>
                             <img src={`http://127.0.0.1:8080/product-image/${prd.id}`} alt="" className={products.productImg} />

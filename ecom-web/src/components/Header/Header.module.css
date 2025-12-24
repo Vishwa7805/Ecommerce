@@ -54,6 +54,7 @@
 
 .profileImage {
     border-radius: 100%;
+    width: 2em;
 }
 
 .dropdownMenu {
