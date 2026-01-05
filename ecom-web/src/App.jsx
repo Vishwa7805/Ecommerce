@@ -12,6 +12,7 @@ import Footer from './components/Footer/Footer.jsx';
 import Subscription from './components/Subscription/Subscription.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import SellerWrapper from './components/SellerWrapper/SellerWrapper.jsx';
+import Cart from './components/Cart/Cart.jsx';
 import { UserProvider } from './components/Context/UserContext.jsx';
 
 function App() {
@@ -42,6 +43,12 @@ function App() {
               <>
                 <Header setShowLogin={setShowLogin} />
                 <ProductDetails />
+              </>
+            } />
+            <Route path="/cart" element={
+              <>
+                <Header setShowLogin={setShowLogin} />
+                <Cart />
               </>
             } />
           </Routes>

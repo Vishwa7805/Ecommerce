@@ -8,6 +8,7 @@ import com.vishwa.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,5 +35,9 @@ public class CartService {
 
             cartRepository.save(newItem);
         }
+    }
+
+    public List<CartItem> getCartItemsForUser(User user) {
+        return cartRepository.findByUser(user);
     }
 }

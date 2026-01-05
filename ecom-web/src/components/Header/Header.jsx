@@ -9,7 +9,6 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
 import { FaSignOutAlt } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
-import { FaShoppingCart } from "react-icons/fa";
 
 
 const Header = ({ setShowLogin }) => {
@@ -26,7 +25,7 @@ const Header = ({ setShowLogin }) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdown(false);
       }
-    } 
+    }
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -42,7 +41,7 @@ const Header = ({ setShowLogin }) => {
     setIsDropdown(false);
   }
 
-  const handleSignOut =() => {
+  const handleSignOut = () => {
     setCurrentUser(null);
     setIsDropdown(false);
     window.location.href = 'http://localhost:8080/logout';
@@ -64,7 +63,6 @@ const Header = ({ setShowLogin }) => {
         <div className={header.profileContainer} ref={dropdownRef}>
           {currentUser ? (
             <div style={{ position: 'relative' }}>
-              <FaShoppingCart className={header.shoppingCartIcon}/>
               <img src={currentUser.pictureUrl || defaultImg} alt="Profile" className={header.profileImage} onClick={showDropdown} />
               {isDropdown && (
                 <ul className={header.dropdownMenu}>
@@ -72,10 +70,11 @@ const Header = ({ setShowLogin }) => {
                     <IoMdSettings style={{ fontSize: '1em', color: 'var(--color3)' }} />
                     <p>Manage account</p>
                   </li>
-                  <li>
-                    <MdOutlineShoppingCart style={{ fontSize: '1em', color: 'var(--color3)' }} />
-                    <p>Cart</p>
-                  </li>
+                  <Link to="/cart">
+                    <li>
+                      <MdOutlineShoppingCart style={{ fontSize: '1em', color: 'var(--color3)' }} />
+                      <p>Cart</p>
+                    </li></Link>
                   <li>
                     <FaBasketShopping style={{ fontSize: '1em', color: 'var(--color3)' }} />
                     <p>My Orders</p>
