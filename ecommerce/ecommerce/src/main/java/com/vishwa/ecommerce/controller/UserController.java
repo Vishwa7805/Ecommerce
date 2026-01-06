@@ -20,6 +20,9 @@ public class UserController {
 
     @GetMapping("/user/me")
     public ResponseEntity<User> getUserDetails(@AuthenticationPrincipal OAuth2User oAuth2User) {
+        if (oAuth2User == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         Map<String, Object> attributes = oAuth2User.getAttributes();
         String email = (String) attributes.get("email");
         Optional<User> user = userService.findByEmail(email);

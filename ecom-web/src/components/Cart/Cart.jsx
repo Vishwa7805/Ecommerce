@@ -1,11 +1,26 @@
 import { useEffect, useState, useContext } from 'react';
 import cart from './Cart.module.css';
+import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import UserContext from '../Context/UserContext.jsx';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const { isAuthenticated } = useContext(UserContext);
+    const totalPrice = cartItems.reduce((acc, item) => acc + item.product.price, 0);
+
+const handleDelete = async (cartItemId) => {
+    try {
+        await axios.delete(`http://localhost:8080/cart/remove/${cartItemId}`, {
+            withCredentials: true
+        });
+        
+        setCartItems(prevItems => prevItems.filter(item => item.id !== cartItemId));
+    } catch (error) {
+        console.error('Error removing item:', error);
+        alert("Could not remove item. Please try again.");
+    }
+};
 
     useEffect(() => {
         const fetchCartData = async () => {
@@ -50,6 +65,7 @@ const Cart = () => {
                                 <div style={{ width: "20%", textAlign: 'center' }}>${item.product.price.toFixed(2)}</div>
                                 <div style={{ width: "20%", textAlign: 'center' }}>1</div>
                                 <div style={{ width: "20%", textAlign: 'center' }}>${item.product.price.toFixed(2)}</div>
+                                <MdDelete style={{cursor: "pointer"}} onClick={() => handleDelete(item.id)}/>
                             </div>
                         ))
                     ) : (
@@ -58,21 +74,24 @@ const Cart = () => {
                 </div>
             </div>
             <div className={cart.cartSummary}>
-                <h2 style={{fontWeight: "500"}}>Cart Summary</h2>
+                <h2 style={{ fontWeight: "500" }}>Cart Summary</h2>
                 <div style={{ borderBottom: "1px solid #eee", height: "25%" }}>
 
                 </div>
                 <div style={{ borderBottom: "1px solid #eee", height: "20%", display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
-                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                         <p>Price</p>
-                        <p>$10</p>
+                        <p>${totalPrice.toFixed(2)}</p>
                     </div>
-                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                         <p>Shipping Fee</p>
                         <p>$10</p>
                     </div>
                 </div>
-                <h3 style={{fontWeight: "500"}}>Total</h3>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
+                    <h3 style={{ fontWeight: "500", display: "inline" }}>Total</h3>
+                    <h3 style={{ fontWeight: "450", display: "inline" }}>${(totalPrice + 10).toFixed(2)}</h3>
+                </div>
                 <button className={cart.placeOrderButton}>Place Order</button>
             </div>
         </div>

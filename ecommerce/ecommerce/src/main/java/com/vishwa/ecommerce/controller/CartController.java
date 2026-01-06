@@ -49,4 +49,20 @@ public class CartController {
         List<CartItem> items = cartService.getCartItemsForUser(user);
         return ResponseEntity.ok(items);
     }
+
+    @DeleteMapping("/remove/{cartItemId}")
+    public ResponseEntity<String> removeProductFromCart(@AuthenticationPrincipal OAuth2User principal, @PathVariable int cartItemId) {
+        if (principal == null) {
+            return ResponseEntity.status(401).body("User not authenticated");
+        }
+
+        String email = principal.getAttribute("email");
+        User user = userService.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Logic to ensure the cart item belongs to the user before deleting
+        cartService.removeItemFromCart(user, cartItemId);
+
+        return ResponseEntity.ok("Item removed from cart");
+    }
 }
