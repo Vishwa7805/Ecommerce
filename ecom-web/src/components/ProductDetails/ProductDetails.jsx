@@ -35,6 +35,7 @@ const ProductDetails = () => {
             const response = await axios.post(`http://localhost:8080/cart/add-product=${product.id}`,
                 {},
                 { withCredentials: true });
+            alert("Product added to cart successfully!");
         } catch (error) {
             console.error("Error adding to cart:", error);
             alert("Could not add to cart. Please try again.");

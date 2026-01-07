@@ -8,19 +8,32 @@ const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const { isAuthenticated } = useContext(UserContext);
     const totalPrice = cartItems.reduce((acc, item) => acc + item.product.price, 0);
+    const [quantity, setQuantity] = useState(1);
 
-const handleDelete = async (cartItemId) => {
-    try {
-        await axios.delete(`http://localhost:8080/cart/remove/${cartItemId}`, {
-            withCredentials: true
-        });
-        
-        setCartItems(prevItems => prevItems.filter(item => item.id !== cartItemId));
-    } catch (error) {
-        console.error('Error removing item:', error);
-        alert("Could not remove item. Please try again.");
+    const incrementQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
+
+    const decrementQuantity = () => {
+        setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
     }
-};
+
+    const handleDelete = async (cartItemId) => {
+        try {
+            await axios.delete(`http://localhost:8080/cart/remove/${cartItemId}`, {
+                withCredentials: true
+            });
+
+            setCartItems(prevItems => prevItems.filter(item => item.id !== cartItemId));
+        } catch (error) {
+            console.error('Error removing item:', error);
+            alert("Could not remove item. Please try again.");
+        }
+    };
+
+    const handlePlaceOrder = () => {
+        alert("Order placed successfully!");
+    }
 
     useEffect(() => {
         const fetchCartData = async () => {
@@ -63,9 +76,13 @@ const handleDelete = async (cartItemId) => {
                                     <span>{item.product.name}</span>
                                 </div>
                                 <div style={{ width: "20%", textAlign: 'center' }}>${item.product.price.toFixed(2)}</div>
-                                <div style={{ width: "20%", textAlign: 'center' }}>1</div>
+                                <div style={{ width: "20%", textAlign: 'center' }} className={cart.quantityContainer}>
+                                    <span className={`${cart.triangleLeft} ${cart.triangle}`} onClick={() => decrementQuantity()}></span>
+                                    <span>{quantity}</span>
+                                    <span className={`${cart.triangleRight} ${cart.triangle}`} onClick={() => incrementQuantity()}></span>
+                                </div>
                                 <div style={{ width: "20%", textAlign: 'center' }}>${item.product.price.toFixed(2)}</div>
-                                <MdDelete style={{cursor: "pointer"}} onClick={() => handleDelete(item.id)}/>
+                                <MdDelete style={{ cursor: "pointer" }} onClick={() => handleDelete(item.id)} />
                             </div>
                         ))
                     ) : (
@@ -88,11 +105,11 @@ const handleDelete = async (cartItemId) => {
                         <p>$10</p>
                     </div>
                 </div>
-                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
+                <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                     <h3 style={{ fontWeight: "500", display: "inline" }}>Total</h3>
                     <h3 style={{ fontWeight: "450", display: "inline" }}>${(totalPrice + 10).toFixed(2)}</h3>
                 </div>
-                <button className={cart.placeOrderButton}>Place Order</button>
+                <button className={cart.placeOrderButton} onClick={handlePlaceOrder}>Place Order</button>
             </div>
         </div>
     )
