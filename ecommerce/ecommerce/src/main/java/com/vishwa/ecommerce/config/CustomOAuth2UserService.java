@@ -41,9 +41,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                     return newUser;
                 });
 
-        if("nvvishwa7805@gmail.com".equals(email)) {
-            user.setRole(Role.SELLER);
-        }
 
         user.setGoogleId(googleId);
         user.setName(name);
