@@ -24,15 +24,17 @@ public class CartService {
         Optional<CartItem> existingItem = cartRepository.findByUserAndProductId(user, productId);
 
         if (existingItem.isPresent()) {
-            System.out.println("Product already in cart for user: " + user.getEmail());
+            CartItem item = existingItem.get();
+            item.setQuantity(item.getQuantity() + 1);
+            cartRepository.save(item);
         } else {
             Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+                    .orElseThrow(() -> new RuntimeException("Product not found"));
 
             CartItem newItem = new CartItem();
             newItem.setUser(user);
             newItem.setProduct(product);
-
+            newItem.setQuantity(1);
             cartRepository.save(newItem);
         }
     }
@@ -49,6 +51,18 @@ public class CartService {
             cartRepository.delete(cartItem);
         } else {
             throw new RuntimeException("Unauthorized to delete this item");
+        }
+    }
+
+    public void updateProductQuantity(User user, int itemId, int newQuantity) {
+        CartItem cartItem = cartRepository.findById(itemId)
+                .orElseThrow(() -> new RuntimeException("Cart item not found"));
+
+        if (cartItem.getUser().getId() == user.getId()) {
+            cartItem.setQuantity(newQuantity);
+            cartRepository.save(cartItem);
+        } else {
+            throw new RuntimeException("Unauthorized to update this item");
         }
     }
 }

@@ -7,16 +7,31 @@ import UserContext from '../Context/UserContext.jsx';
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const { isAuthenticated } = useContext(UserContext);
-    const totalPrice = cartItems.reduce((acc, item) => acc + item.product.price, 0);
-    const [quantity, setQuantity] = useState(1);
+    const totalPrice = cartItems.reduce((acc, item) => acc + (item.product.price * item.quantity), 0);
 
-    const incrementQuantity = () => {
-        setQuantity(prevQuantity => prevQuantity + 1);
+    const updateQuantity = async (itemId, currentQuantity, change) => {
+        let newQuantity = currentQuantity + change;
+        if (newQuantity < 1) {
+            alert("Quantity cannot be less than 1.");
+            return;
+        }
+        try {
+            await axios.put(`http://localhost:8080/cart/update-quantity/${itemId}`, {
+                quantity: newQuantity
+            }, {
+                withCredentials: true
+            });
+            setCartItems(prevItems =>
+                prevItems.map(item =>
+                    item.id === itemId ? { ...item, quantity: newQuantity } : item
+                )
+            );
+        }
+        catch (error) {
+            console.error('Error incrementing quantity:', error);
+            alert("Could not increment quantity. Please try again.");
+        }
     };
-
-    const decrementQuantity = () => {
-        setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
-    }
 
     const handleDelete = async (cartItemId) => {
         try {
@@ -77,11 +92,11 @@ const Cart = () => {
                                 </div>
                                 <div style={{ width: "20%", textAlign: 'center' }}>${item.product.price.toFixed(2)}</div>
                                 <div style={{ width: "20%", textAlign: 'center' }} className={cart.quantityContainer}>
-                                    <span className={`${cart.triangleLeft} ${cart.triangle}`} onClick={() => decrementQuantity()}></span>
-                                    <span>{quantity}</span>
-                                    <span className={`${cart.triangleRight} ${cart.triangle}`} onClick={() => incrementQuantity()}></span>
+                                    <span className={`${cart.triangleLeft} ${cart.triangle}`} onClick={() => updateQuantity(item.id, item.quantity, -1)}></span>
+                                    <span>{item.quantity}</span>
+                                    <span className={`${cart.triangleRight} ${cart.triangle}`} onClick={() => updateQuantity(item.id, item.quantity, 1)}></span>
                                 </div>
-                                <div style={{ width: "20%", textAlign: 'center' }}>${item.product.price.toFixed(2)}</div>
+                                <div style={{ width: "20%", textAlign: 'center' }}>${(item.product.price * item.quantity).toFixed(2)}</div>
                                 <MdDelete style={{ cursor: "pointer" }} onClick={() => handleDelete(item.id)} />
                             </div>
                         ))
